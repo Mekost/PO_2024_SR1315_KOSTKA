@@ -9,6 +9,14 @@ public class Vector2d {
         this.y = y;
     }
 
+    public int get_x() {
+        return this.x;
+    }
+
+    public int get_y() {
+        return this.y;
+    }
+
     public String toString() {
         return "(%s,%d)".formatted(this.x, this.y);
     }
