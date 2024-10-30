@@ -17,10 +17,14 @@ public class Vector2dTest {
 
     @Test
     void equalityOfVectors() {
+        Vector2d test = new Vector2d(-4, -3);
         assertTrue(b.equals(b));
         assertFalse(a.equals(b));
         assertFalse(b.equals(a));
         assertFalse(c.equals(d));
+        assertFalse(b.equals(true));
+        assertTrue(c.equals(test));
+
     }
     @Test
     void findingUpperRightPoint() {
