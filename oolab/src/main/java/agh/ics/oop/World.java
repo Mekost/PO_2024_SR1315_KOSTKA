@@ -1,5 +1,6 @@
 package agh.ics.oop;
 import agh.ics.oop.model.*;
+import org.w3c.dom.Text;
 
 import static agh.ics.oop.OptionsParser.*;
 
@@ -28,9 +29,17 @@ public class World {
         }
 
         List<MoveDirection> directions = OptionsParser.parse(args);
-        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
-        WorldMap map = new RectangularMap(8, 8);
-        Simulation simulation = new Simulation(positions, directions, map);
+//        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
+//        WorldMap map = new RectangularMap(8, 8);
+//        Simulation simulation = new Simulation(positions, directions, map);
+//        simulation.run();
+
+        List<String> words = List.of("Ala", "ma", "sowoniedźwiedzia");
+        TextMap map = new TextMap();
+        map.place("Ala");
+        map.place("ma");
+        map.place("sowoniedźwiedzia");
+        Simulation simulation = new Simulation(words, directions, map);
         simulation.run();
 
 
