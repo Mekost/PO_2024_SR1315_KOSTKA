@@ -21,7 +21,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -41,7 +41,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -62,7 +62,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -83,7 +83,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -104,7 +104,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -127,7 +127,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();
@@ -173,7 +173,7 @@ class SimulationTest {
         List<Vector2d> currentPositions = new ArrayList<>();
 
         for(Animal animal: animalsList) {
-            currentPositions.add(animal.getLocation());
+            currentPositions.add(animal.getPosition());
         }
 
         List<Vector2d> correctPositions = new ArrayList<>();

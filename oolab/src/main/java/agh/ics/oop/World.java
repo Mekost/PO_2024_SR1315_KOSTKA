@@ -21,18 +21,26 @@ public class World {
 //        System.out.println(test[0].previous());
 //        System.out.println(test[1].toUnitVector());
 //        Do zadania lepiej użyć ArrayLista ze względu na łatwość dostępu do elemetów
-        Animal animal = new Animal(new Vector2d(1, 2));
-        System.out.println(animal.toString());
-        if(animal.isAt(new Vector2d(1, 2))) {
-            System.out.println("Pozycja się zgadza");
-        }
 
+//        Animal animal = new Animal(new Vector2d(1, 2));
+//        System.out.println(animal.toString());
+//        if(animal.isAt(new Vector2d(1, 2))) {
+//            System.out.println("Pozycja się zgadza");
+//        }
+//
+//        List<MoveDirection> directions = OptionsParser.parse(args);
+//        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
+//        WorldMap map = new RectangularMap(8, 8);
+//        Simulation simulation = new Simulation(positions, directions, map);
+//        simulation.run();
+
+        System.out.println("a");
+        WorldMap map = new GrassField(10);
+        System.out.println("a");
         List<MoveDirection> directions = OptionsParser.parse(args);
         List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
-        WorldMap map = new RectangularMap(8, 8);
         Simulation simulation = new Simulation(positions, directions, map);
         simulation.run();
-
 
 
     }

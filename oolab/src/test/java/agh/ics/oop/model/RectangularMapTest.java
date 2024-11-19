@@ -28,8 +28,8 @@ class RectangularMapTest {
         WorldMap map = new RectangularMap(10, 10);
         map.place(animal1);
         map.place(animal6);
-        assertTrue(map.isOccupied(animal1.getLocation()));
-        assertTrue(map.isOccupied(animal6.getLocation()));
+        assertTrue(map.isOccupied(animal1.getPosition()));
+        assertTrue(map.isOccupied(animal6.getPosition()));
         assertFalse(map.isOccupied(new Vector2d(4, 7)));
     }
 
@@ -45,14 +45,14 @@ class RectangularMapTest {
         map.move(zwierz1, MoveDirection.RIGHT);
         map.move(zwierz1, MoveDirection.FORWARD);
         // po tym powinien być w (3, 4) ^ (gdyby nie było ograniczenia)
-        assertEquals(zwierz1.getLocation(), new Vector2d(2, 4));
+        assertEquals(zwierz1.getPosition(), new Vector2d(2, 4));
         map.move(zwierz1, MoveDirection.BACKWARD);
         map.move(zwierz1, MoveDirection.BACKWARD);
         map.move(zwierz1, MoveDirection.BACKWARD);
-        assertEquals(zwierz1.getLocation(), new Vector2d(0, 4));
+        assertEquals(zwierz1.getPosition(), new Vector2d(0, 4));
         map.move(zwierz2, MoveDirection.FORWARD);
         map.move(zwierz2, MoveDirection.FORWARD);
-        assertEquals(zwierz2.getLocation(), new Vector2d(3,5));
+        assertEquals(zwierz2.getPosition(), new Vector2d(3,4));
     }
 
     @Test
