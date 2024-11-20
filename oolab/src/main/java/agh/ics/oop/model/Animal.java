@@ -1,6 +1,6 @@
 package agh.ics.oop.model;
 
-public class Animal {
+public class Animal implements WorldElement {
     private MapDirection currentOrientation;
     private Vector2d currentLocation;
 
@@ -18,7 +18,7 @@ public class Animal {
         return currentOrientation;
     }
 
-    public Vector2d getLocation() {
+    public Vector2d getPosition() {
         return currentLocation;
     }
 
@@ -42,7 +42,6 @@ public class Animal {
             case MoveDirection.FORWARD -> {
                 this.currentLocation = this.currentLocation.add(this.currentOrientation.toUnitVector());
                 if (!moveValidator.canMoveTo(currentLocation)) {
-                    System.out.println("You can't go outside the bounds");
                     this.currentLocation = this.currentLocation.subtract(this.currentOrientation.toUnitVector());
                 }
             }

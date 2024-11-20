@@ -19,8 +19,8 @@ class AnimalTest {
 
     @Test
     void checkingEqualityOfPositions() {
-        assertTrue(animal1.isAt(animal1.getLocation()));
-        assertFalse(animal2.isAt(animal3.getLocation()));
+        assertTrue(animal1.isAt(animal1.getPosition()));
+        assertFalse(animal2.isAt(animal3.getPosition()));
         assertTrue(animal3.isAt(new Vector2d(4, 1)));
     }
 
@@ -29,7 +29,7 @@ class AnimalTest {
         Animal test = new Animal(new Vector2d(0, 4));
         map.move(test, MoveDirection.FORWARD);
         // w wyniku takiej operacji powinien zmienić współrzędne na (0,5) gdyby nie było ograniczeń
-        assertEquals(test.getLocation(), new Vector2d(0, 4));
+        assertEquals(test.getPosition(), new Vector2d(0, 4));
     }
 
     @Test
@@ -38,7 +38,7 @@ class AnimalTest {
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.FORWARD);
-        assertEquals(test.getLocation(), new Vector2d(0, 0));
+        assertEquals(test.getPosition(), new Vector2d(0, 0));
     }
 
     @Test
@@ -48,17 +48,17 @@ class AnimalTest {
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.FORWARD);
-        assertEquals(test.getLocation(), new Vector2d(0, 0));
+        assertEquals(test.getPosition(), new Vector2d(0, 0));
     }
 
     @Test
     void checkingEastBoundaryWhenGoingForward() {
-        Animal test = new Animal(new Vector2d(3, 0));
+        Animal test = new Animal(new Vector2d(4, 0));
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.FORWARD);
-        assertEquals(test.getLocation(), new Vector2d(4, 0));
+        assertEquals(test.getPosition(), new Vector2d(4, 0));
         map.move(test, MoveDirection.FORWARD);
-        assertEquals(test.getLocation(), new Vector2d(4, 0));
+        assertEquals(test.getPosition(), new Vector2d(4, 0));
     }
 
     @Test
@@ -68,14 +68,14 @@ class AnimalTest {
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.BACKWARD);
         // w wyniku takiej operacji powinien zmienić współrzędne na (0,5) gdyby nie było ograniczeń
-        assertEquals(test.getLocation(), new Vector2d(0, 4));
+        assertEquals(test.getPosition(), new Vector2d(0, 4));
     }
 
     @Test
     void checkingSouthBoundaryWhenGoingBackward() {
         Animal test = new Animal(new Vector2d(0, 0));
         map.move(test, MoveDirection.BACKWARD);
-        assertEquals(test.getLocation(), new Vector2d(0, 0));
+        assertEquals(test.getPosition(), new Vector2d(0, 0));
     }
 
     @Test
@@ -83,7 +83,7 @@ class AnimalTest {
         Animal test = new Animal(new Vector2d(0, 0));
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.BACKWARD);
-        assertEquals(test.getLocation(), new Vector2d(0, 0));
+        assertEquals(test.getPosition(), new Vector2d(0, 0));
     }
 
     @Test
@@ -93,7 +93,7 @@ class AnimalTest {
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.BACKWARD);
-        assertEquals(test.getLocation(), new Vector2d(4, 0));
+        assertEquals(test.getPosition(), new Vector2d(4, 0));
     }
 
     @Test
@@ -129,8 +129,8 @@ class AnimalTest {
 
     @Test
     void locationGetter() {
-        assertEquals(new Vector2d(2, 2), animal1.getLocation());
+        assertEquals(new Vector2d(2, 2), animal1.getPosition());
         map.move(animal1, MoveDirection.FORWARD);
-        assertEquals(new Vector2d(2, 3), animal1.getLocation());
+        assertEquals(new Vector2d(2, 3), animal1.getPosition());
     }
 }
