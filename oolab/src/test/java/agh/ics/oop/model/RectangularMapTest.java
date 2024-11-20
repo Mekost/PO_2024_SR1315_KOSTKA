@@ -78,5 +78,15 @@ class RectangularMapTest {
         assertFalse(map.canMoveTo(new Vector2d(4, 6)));
     }
 
+    @Test
+    void testMapVisualization() {
+        RectangularMap map = new RectangularMap(10, 10);
+        Animal animal = new Animal(new Vector2d(2, 2));
+        map.place(animal);
+
+        String mapRepresentation = map.toString();
+        assertNotNull(mapRepresentation);
+        //System.out.println(mapRepresentation);
+    }
 
 }

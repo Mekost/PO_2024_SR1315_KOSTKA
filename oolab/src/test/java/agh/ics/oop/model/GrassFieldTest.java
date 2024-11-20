@@ -68,6 +68,6 @@ class GrassFieldTest {
 
         String mapRepresentation = grassField.toString();
         assertNotNull(mapRepresentation);
-        System.out.println(mapRepresentation);
+        //System.out.println(mapRepresentation);
     }
 }

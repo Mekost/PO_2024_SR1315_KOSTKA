@@ -42,7 +42,6 @@ public class Animal implements WorldElement {
             case MoveDirection.FORWARD -> {
                 this.currentLocation = this.currentLocation.add(this.currentOrientation.toUnitVector());
                 if (!moveValidator.canMoveTo(currentLocation)) {
-                    System.out.println("You can't go outside the bounds");
                     this.currentLocation = this.currentLocation.subtract(this.currentOrientation.toUnitVector());
                 }
             }

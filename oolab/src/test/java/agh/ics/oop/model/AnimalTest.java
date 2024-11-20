@@ -53,7 +53,7 @@ class AnimalTest {
 
     @Test
     void checkingEastBoundaryWhenGoingForward() {
-        Animal test = new Animal(new Vector2d(3, 0));
+        Animal test = new Animal(new Vector2d(4, 0));
         map.move(test, MoveDirection.RIGHT);
         map.move(test, MoveDirection.FORWARD);
         assertEquals(test.getPosition(), new Vector2d(4, 0));

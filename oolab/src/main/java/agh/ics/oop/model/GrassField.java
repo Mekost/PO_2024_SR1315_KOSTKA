@@ -15,15 +15,21 @@ public class GrassField extends AbstractWorldMap {
         this.amountOfGrassFields = amountOfGrass;
         this.visualizer = new MapVisualizer(this);
         int upperBound = (int) Math.sqrt(amountOfGrassFields * 10);
-        while (grassLocations.size() < amountOfGrassFields) {
-            int x = getRandom(0, upperBound);
-            int y = getRandom(0, upperBound);
-            Vector2d possiblePlacing = new Vector2d(x, y);
-            if (!grassLocations.containsKey(possiblePlacing)) {
-                grassLocations.put(possiblePlacing, new Grass(possiblePlacing));
-            }
+//        while (grassLocations.size() < amountOfGrassFields) {
+//            int x = getRandom(0, upperBound);
+//            int y = getRandom(0, upperBound);
+//            Vector2d possiblePlacing = new Vector2d(x, y);
+//            if (!grassLocations.containsKey(possiblePlacing)) {
+//                grassLocations.put(possiblePlacing, new Grass(possiblePlacing));
+//            }
+//        }
+////        grassLocations.put(new Vector2d(2, 2), new Grass(new Vector2d(2,2)));
+        // ^ pierwotny, niedeterministyczny algorytm
+
+        RandomPositionGenerator randomPositionGenerator = new RandomPositionGenerator(upperBound, upperBound, amountOfGrassFields);
+        for(Vector2d grassPosition : randomPositionGenerator) {
+            grassLocations.put(grassPosition, new Grass(grassPosition));
         }
-//        grassLocations.put(new Vector2d(2, 2), new Grass(new Vector2d(2,2)));
     }
 
     public Map<Vector2d, Grass> getGrassLocations() {
@@ -82,10 +88,9 @@ public class GrassField extends AbstractWorldMap {
     }
 
     public WorldElement objectAt(Vector2d position) {
-        if (grassLocations.containsKey(position)) {
-            return grassLocations.get(position);
-        }
-        return super.objectAt(position);
+        WorldElement object = super.objectAt(position);
+        if(object != null) return object;
+        return grassLocations.get(position);
     }
 
     public Map<Vector2d, WorldElement> getElements() {
