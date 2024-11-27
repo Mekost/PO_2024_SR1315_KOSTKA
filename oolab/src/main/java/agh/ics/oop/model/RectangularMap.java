@@ -10,7 +10,6 @@ public class RectangularMap extends AbstractWorldMap {
     private int height;
     private final Vector2d bottomLeft;
     private final Vector2d topRight;
-    private final MapVisualizer visualizer;
 
     public RectangularMap(int width, int height) {
         this.width = width;
@@ -44,9 +43,9 @@ public class RectangularMap extends AbstractWorldMap {
 //        return animals.containsKey(position);
 //    }
 
-    public String toString() {
-        return visualizer.draw(bottomLeft, topRight);
-    }
+//    public String toString() {
+//        return visualizer.draw(bottomLeft, topRight);
+//    }
 
 //    @Override
 //    public Animal objectAt(Vector2d position) {

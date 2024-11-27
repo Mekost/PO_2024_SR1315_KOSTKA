@@ -9,7 +9,6 @@ import java.util.Map;
 public class GrassField extends AbstractWorldMap {
     private Map<Vector2d, Grass> grassLocations = new HashMap<>();
     private int amountOfGrassFields;
-    private final MapVisualizer visualizer;
 
     public GrassField(int amountOfGrass) {
         this.amountOfGrassFields = amountOfGrass;
@@ -52,29 +51,29 @@ public class GrassField extends AbstractWorldMap {
 //        return false;
 //    }
 
-    @Override
-    public String toString() {
-        int biggest_width = 0;
-        int biggest_height = 0;
-        int lowest_width = 0;
-        int lowest_height = 0;
-        for (Map.Entry<Vector2d, Animal> entry : animals.entrySet()) {
-            Animal currentAnimal = entry.getValue();
-            biggest_height = Math.max(biggest_height, currentAnimal.getPosition().getY());
-            biggest_width = Math.max(biggest_width, currentAnimal.getPosition().getX());
-            lowest_width = Math.min(lowest_width, currentAnimal.getPosition().getX());
-            lowest_height = Math.min(lowest_height, currentAnimal.getPosition().getY());
-        }
-        for (Map.Entry<Vector2d, Grass> entry : grassLocations.entrySet()) {
-            Grass currentGrass = entry.getValue();
-            biggest_height = Math.max(biggest_height, currentGrass.getPosition().getY());
-            biggest_width = Math.max(biggest_width, currentGrass.getPosition().getX());
-            lowest_width = Math.min(lowest_width, currentGrass.getPosition().getX());
-            lowest_height = Math.min(lowest_height, currentGrass.getPosition().getY());
-        }
-
-        return visualizer.draw(new Vector2d(lowest_width, lowest_height), new Vector2d(biggest_width, biggest_height));
-    }
+//    @Override
+//    public String toString() {
+//        int biggest_width = 0;
+//        int biggest_height = 0;
+//        int lowest_width = 0;
+//        int lowest_height = 0;
+//        for (Map.Entry<Vector2d, Animal> entry : animals.entrySet()) {
+//            Animal currentAnimal = entry.getValue();
+//            biggest_height = Math.max(biggest_height, currentAnimal.getPosition().getY());
+//            biggest_width = Math.max(biggest_width, currentAnimal.getPosition().getX());
+//            lowest_width = Math.min(lowest_width, currentAnimal.getPosition().getX());
+//            lowest_height = Math.min(lowest_height, currentAnimal.getPosition().getY());
+//        }
+//        for (Map.Entry<Vector2d, Grass> entry : grassLocations.entrySet()) {
+//            Grass currentGrass = entry.getValue();
+//            biggest_height = Math.max(biggest_height, currentGrass.getPosition().getY());
+//            biggest_width = Math.max(biggest_width, currentGrass.getPosition().getX());
+//            lowest_width = Math.min(lowest_width, currentGrass.getPosition().getX());
+//            lowest_height = Math.min(lowest_height, currentGrass.getPosition().getY());
+//        }
+//
+//        return visualizer.draw(new Vector2d(lowest_width, lowest_height), new Vector2d(biggest_width, biggest_height));
+//    }
 
 //    public void move(Animal animal, MoveDirection moveDirection) {
 //        Vector2d prevPosition = animal.getPosition();
@@ -94,15 +93,28 @@ public class GrassField extends AbstractWorldMap {
     }
 
     public Map<Vector2d, WorldElement> getElements() {
-        Map<Vector2d, WorldElement> elements = super.getElements();
+        Map<Vector2d, WorldElement> allAnimals = super.getElements();
         for(Map.Entry<Vector2d, Grass> element : grassLocations.entrySet()) {
-            elements.put(element.getKey(), element.getValue());
+            allAnimals.put(element.getKey(), element.getValue());
         }
-        return elements;
+        return allAnimals;
     }
 
-//    public boolean canMoveTo(Vector2d position) {
-//        return !(objectAt(position) instanceof Animal) && position.follows(new Vector2d(0, 0));
-//    }
+    @Override
+    public Boundary getCurrentBounds() {
+        int biggest_width = 0;
+        int biggest_height = 0;
+        int lowest_width = 0;
+        int lowest_height = 0;
+        Map<Vector2d, WorldElement> elements = this.getElements();
+        for(Map.Entry<Vector2d, WorldElement> entry: elements.entrySet()){
+            WorldElement currentElement = entry.getValue();
+            biggest_height = Math.max(biggest_height, currentElement.getPosition().getY());
+            biggest_width = Math.max(biggest_width, currentElement.getPosition().getX());
+            lowest_width = Math.min(lowest_width, currentElement.getPosition().getX());
+            lowest_height = Math.min(lowest_height, currentElement.getPosition().getY());
+        }
+        return new Boundary(new Vector2d(lowest_width, lowest_height), new Vector2d(biggest_width, biggest_height));
+    }
 
 }

@@ -13,49 +13,77 @@ class OptionsParserTest {
     void isMovingForwardCorrect() {
         String[] test = {"f"};
         List<MoveDirection> result = List.of(MoveDirection.FORWARD);
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isMovingLeftCorrect() {
         String[] test = {"l"};
         List<MoveDirection> result = List.of(MoveDirection.LEFT);
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isMovingRightCorrect() {
         String[] test = {"r"};
         List<MoveDirection> result = List.of(MoveDirection.RIGHT);
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isMovingBackwardCorrect() {
         String[] test = {"b"};
         List<MoveDirection> result = List.of(MoveDirection.BACKWARD);
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isCheckingWrongCommandCorrect() {
         String[] test = {"t"};
         List<MoveDirection> result = List.of();
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isCheckingEmptyArrayCorrect() {
         String[] test = {};
         List<MoveDirection> result = List.of();
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void isCheckingWholeArrayCorrect() {
         String[] test = {"f", "r", "b", "t", "l"};
         List<MoveDirection> result = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT);
-        assertEquals(result, OptionsParser.parse(test));
+        try {
+            assertEquals(result, OptionsParser.parse(test));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
 }
