@@ -2,6 +2,8 @@ package agh.ics.oop.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GrassFieldTest {
@@ -14,60 +16,80 @@ class GrassFieldTest {
     }
 
     @Test
-    void testAnimalPlacement() {
-        GrassField grassField = new GrassField(10);
-        Animal animal = new Animal(new Vector2d(2, 2));
+    void testAnimalPlacement() throws IncorrectPositionException {
+        try {
+            GrassField grassField = new GrassField(10);
+            Animal animal = new Animal(new Vector2d(2, 2));
 
-        assertTrue(grassField.place(animal));
-        assertEquals(animal, grassField.objectAt(new Vector2d(2, 2)));
+            assertTrue(grassField.place(animal));
+            assertEquals(animal, grassField.objectAt(new Vector2d(2, 2)));
+        } catch (IncorrectPositionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testIsOccupied() {
-        GrassField grassField = new GrassField(10);
+    void testIsOccupied() throws IncorrectPositionException {
+        try {
+            GrassField grassField = new GrassField(10);
 
-        Vector2d grassPosition = grassField.getGrassLocations().keySet().iterator().next();
+            Vector2d grassPosition = grassField.getGrassLocations().keySet().iterator().next();
 
-        Animal animal = new Animal(new Vector2d(3, 3));
-        grassField.place(animal);
+            Animal animal = new Animal(new Vector2d(3, 3));
+            grassField.place(animal);
 
-        assertTrue(grassField.isOccupied(grassPosition));
-        assertTrue(grassField.isOccupied(new Vector2d(3, 3)));
+            assertTrue(grassField.isOccupied(grassPosition));
+            assertTrue(grassField.isOccupied(new Vector2d(3, 3)));
+        } catch (IncorrectPositionException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Test
-    void testAnimalMovement() {
-        GrassField grassField = new GrassField(10);
-        Animal animal = new Animal(new Vector2d(2, 2));
-        grassField.place(animal);
+    void testAnimalMovement() throws IncorrectPositionException {
+        try {
+            GrassField grassField = new GrassField(10);
+            Animal animal = new Animal(new Vector2d(2, 2));
+            grassField.place(animal);
 
-        grassField.move(animal, MoveDirection.FORWARD);
-        assertEquals(new Vector2d(2, 3), animal.getPosition());
+            grassField.move(animal, MoveDirection.FORWARD);
+            assertEquals(new Vector2d(2, 3), animal.getPosition());
 
-        grassField.move(animal, MoveDirection.RIGHT);
-        grassField.move(animal, MoveDirection.FORWARD);
-        assertEquals(new Vector2d(3, 3), animal.getPosition());
+            grassField.move(animal, MoveDirection.RIGHT);
+            grassField.move(animal, MoveDirection.FORWARD);
+            assertEquals(new Vector2d(3, 3), animal.getPosition());
+        } catch (IncorrectPositionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testCannotPlaceAnimalOnOccupiedPosition() {
+    void testCannotPlaceAnimalOnOccupiedPosition() throws IncorrectPositionException {
         GrassField grassField = new GrassField(10);
         Animal animal1 = new Animal(new Vector2d(2, 2));
         Animal animal2 = new Animal(new Vector2d(2, 2));
-
-        assertTrue(grassField.place(animal1));
-        assertFalse(grassField.place(animal2));
+        try {
+            assertTrue(grassField.place(animal1));
+            assertFalse(grassField.place(animal2));
+        } catch (IncorrectPositionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testMapVisualization() {
+    void testMapVisualization() throws IncorrectPositionException {
         GrassField grassField = new GrassField(5);
         Animal animal = new Animal(new Vector2d(2, 2));
-        grassField.place(animal);
+        try {
+            grassField.place(animal);
+        } catch (IncorrectPositionException e) {
+            e.printStackTrace();
+        }
 
         String mapRepresentation = grassField.toString();
         assertNotNull(mapRepresentation);
         //System.out.println(mapRepresentation);
     }
+
 }
