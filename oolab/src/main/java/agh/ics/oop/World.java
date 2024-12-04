@@ -21,18 +21,18 @@ public class World {
         List<MoveDirection> directions = OptionsParser.parse(args);
         List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4));
         List<Simulation> simulations = new ArrayList<>();
-        for(int i = 0; i < 2000; i++) {
-            AbstractWorldMap map = new GrassField(10);
-            map.addObserver(new ConsoleMapDisplay());
-            Simulation simulation = new Simulation(positions, directions, map);
-            simulations.add(simulation);
-        }
-//        for(int i = 0; i < 5; i++) {
+//        for(int i = 0; i < 2000; i++) {
 //            AbstractWorldMap map = new GrassField(10);
 //            map.addObserver(new ConsoleMapDisplay());
 //            Simulation simulation = new Simulation(positions, directions, map);
 //            simulations.add(simulation);
 //        }
+        for(int i = 0; i < 7; i++) {
+            AbstractWorldMap map = new GrassField(10);
+            map.addObserver(new ConsoleMapDisplay());
+            Simulation simulation = new Simulation(positions, directions, map);
+            simulations.add(simulation);
+        }
         SimulationEngine engine = new SimulationEngine(simulations);
         engine.runAsyncInThreadPool();
         engine.awaitSimulationsEnd();
