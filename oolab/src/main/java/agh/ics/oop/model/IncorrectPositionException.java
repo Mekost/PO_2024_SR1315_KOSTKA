@@ -7,4 +7,7 @@ public class IncorrectPositionException extends Exception {
         this.position = position;
     }
 
+    public Vector2d getPosition() {
+        return position;
+    }
 }

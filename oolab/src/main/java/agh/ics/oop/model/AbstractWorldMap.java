@@ -1,10 +1,8 @@
 package agh.ics.oop.model;
 
 import agh.ics.oop.model.util.MapVisualizer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public abstract class AbstractWorldMap implements WorldMap {
     protected Map<Vector2d, Animal> animals = new HashMap<>();
@@ -13,6 +11,7 @@ public abstract class AbstractWorldMap implements WorldMap {
     protected Vector2d upperRight = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
     protected List<MapChangeListener> observers = new ArrayList<>();
     protected Map<Vector2d, WorldElement> elements = new HashMap<>();
+    protected int mapID = this.hashCode();
 
     @Override
     public void move(Animal animal, MoveDirection moveDirection) {
@@ -80,5 +79,9 @@ public abstract class AbstractWorldMap implements WorldMap {
         for (MapChangeListener observer : observers) {
             observer.mapChanged(this, string);
         }
+    }
+
+    public int getId() {
+        return mapID;
     }
 }

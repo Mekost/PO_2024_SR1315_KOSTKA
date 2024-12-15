@@ -57,5 +57,7 @@ public class RectangularMap extends AbstractWorldMap {
 //        return !isOccupied(position) && position.precedes(topRight) && position.follows(bottomLeft);
 //    }
 
-
+    public Boundary getCurrentBounds() {
+        return new Boundary(bottomLeft, topRight);
+    }
 }

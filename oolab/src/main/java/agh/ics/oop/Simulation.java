@@ -5,7 +5,7 @@ import agh.ics.oop.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulation {
+public class Simulation implements Runnable {
     private List<Vector2d> positions;
     private List<MoveDirection> directions;
     private int amountOfAnimals;
@@ -25,7 +25,7 @@ public class Simulation {
                     animals.add(animal);
                 }
             } catch (IncorrectPositionException e) {
-                System.out.println("co");
+                System.out.println("Denied: " + e.getMessage());
                 e.printStackTrace();
             }
         }
