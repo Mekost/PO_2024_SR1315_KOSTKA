@@ -49,6 +49,12 @@ public class Simulation implements Runnable {
             if (animalId >= animals.size()) {
                 animalId = 0;
             }
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 }
