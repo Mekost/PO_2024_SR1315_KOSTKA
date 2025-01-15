@@ -127,7 +127,7 @@ public class SimulationPresenter implements MapChangeListener {
             for (int j = yMax; j >= yMin; j--) {
                 Vector2d pos = new Vector2d(i, j);
                 if (map.isOccupied(pos)) {
-                    mapGrid.add(new Label(map.objectAt(pos).toString()), i - xMin + 1, yMax - j + 1);
+                    mapGrid.add(new Label(map.objectAt(pos).map(Object :: toString).orElse(" ")), i - xMin + 1, yMax - j + 1);
                 }
                 else {
                     mapGrid.add(new Label(" "), i - xMin + 1, yMax - j + 1);

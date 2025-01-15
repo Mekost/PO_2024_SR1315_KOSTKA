@@ -5,6 +5,9 @@ import agh.ics.oop.model.util.MapVisualizer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GrassField extends AbstractWorldMap {
     private Map<Vector2d, Grass> grassLocations = new HashMap<>();
@@ -86,19 +89,30 @@ public class GrassField extends AbstractWorldMap {
         return super.isOccupied(position) || grassLocations.containsKey(position);
     }
 
-    public WorldElement objectAt(Vector2d position) {
-        WorldElement object = super.objectAt(position);
-        if(object != null) return object;
-        return grassLocations.get(position);
+    public Optional<WorldElement> objectAt(Vector2d position) {
+        if (animals.containsKey(position)) {
+            return Optional.of(animals.get(position));
+        }
+        if (grassLocations.containsKey(position)) {
+            return Optional.of(grassLocations.get(position));
+        }
+        return Optional.empty();
     }
 
     public Map<Vector2d, WorldElement> getElements() {
-        Map<Vector2d, WorldElement> allAnimals = super.getElements();
-        for(Map.Entry<Vector2d, Grass> element : grassLocations.entrySet()) {
-            allAnimals.put(element.getKey(), element.getValue());
-        }
-        return allAnimals;
+        return Stream.concat(
+                super.getElements().entrySet().stream(),
+                grassLocations.entrySet().stream()
+        ).collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (existing, replacement) -> replacement instanceof Animal ? replacement : existing
+        ));
     }
+
+
+
+
 
     @Override
     public Boundary getCurrentBounds() {

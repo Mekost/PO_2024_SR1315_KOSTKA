@@ -3,6 +3,7 @@ package agh.ics.oop.model;
 import agh.ics.oop.model.util.MapVisualizer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class AbstractWorldMap implements WorldMap {
     protected Map<Vector2d, Animal> animals = new HashMap<>();
@@ -24,8 +25,13 @@ public abstract class AbstractWorldMap implements WorldMap {
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(objectAt(position) instanceof Animal) && position.precedes(upperRight) && position.follows(lowerLeft);
+        return objectAt(position)
+                .map(element -> !(element instanceof Animal))
+                .orElse(true)
+                && position.precedes(upperRight)
+                && position.follows(lowerLeft);
     }
+
 
     @Override
     public boolean place(Animal animal) throws IncorrectPositionException {
@@ -45,18 +51,19 @@ public abstract class AbstractWorldMap implements WorldMap {
     }
 
     @Override
-    public WorldElement objectAt(Vector2d position) {
-        if(animals.get(position) != null) return animals.get(position);
-        return null;
+    public Optional<WorldElement> objectAt(Vector2d position) {
+        if (animals.containsKey(position)) {
+            return Optional.of(animals.get(position));
+        }
+        return Optional.empty();
     }
 
     public Map<Vector2d, WorldElement> getElements() {
-
-        for (Map.Entry<Vector2d, Animal> element : animals.entrySet()) {
-            elements.put(element.getKey(), element.getValue());
-        }
+        animals.entrySet().stream()
+                .forEach(entry -> elements.put(entry.getKey(), entry.getValue()));
         return elements;
     }
+
 
     @Override
     public Boundary getCurrentBounds() {
@@ -83,5 +90,15 @@ public abstract class AbstractWorldMap implements WorldMap {
 
     public int getId() {
         return mapID;
+    }
+
+    public List<Animal> getOrderedAnimals() {
+        Comparator<Animal> comparator = Comparator
+                .comparing((Animal animal) -> animal.getPosition().getX())
+                .thenComparing((Animal animal) -> animal.getPosition().getY());
+
+        return animals.values().stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 }
